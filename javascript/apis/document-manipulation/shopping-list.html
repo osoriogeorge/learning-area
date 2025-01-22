@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping list example</title>
     <style>
       li {
@@ -17,21 +17,43 @@
     </style>
   </head>
   <body>
-
     <h1>My shopping list</h1>
 
     <div>
       <label for="item">Enter a new item:</label>
-      <input type="text" name="item" id="item">
+      <input type="text" name="item" id="item" />
       <button>Add item</button>
     </div>
 
-    <ul>
-
-    </ul>
+    <ul></ul>
 
     <script>
+      const ulElement = document.querySelector("ul");
+      const inputElement = document.querySelector("input");
+      const buttonElement = document.querySelector("button");
 
+      buttonElement.addEventListener("click", () => {
+        const item = inputElement.value;
+        inputElement.value = "";
+
+        const liElement = document.createElement("li");
+        const spanElement = document.createElement("span");
+        const scndButton = document.createElement("btn");
+
+        liElement.appendChild(spanElement);
+        spanElement.textContent = item;
+
+        liElement.appendChild(scndButton);
+        scndButton.textContent = "DELETE";
+
+        ulElement.appendChild(liElement);
+
+        scndButton.addEventListener("click", () => {
+          ulElement.removeChild(liElement);
+        });
+
+        inputElement.focus();
+      });
     </script>
   </body>
 </html>
